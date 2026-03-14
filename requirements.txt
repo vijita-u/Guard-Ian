@@ -1,0 +1,7 @@
+ultralytics
+opencv-python
+numpy
+albumentations
+torch
+torchvision
+pycocotools

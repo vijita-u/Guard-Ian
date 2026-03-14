@@ -1,0 +1,9 @@
+data/*
+!data/.gitkeep
+
+weights/
+outputs/
+*.pt
+*.zip
+*.tar
+*.mp4
