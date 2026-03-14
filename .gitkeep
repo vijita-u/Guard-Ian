@@ -1,0 +1,8 @@
+configs/.gitkeep
+notebooks/.gitkeep
+outputs/.gitkeep
+src/models/.gitkeep
+src/preprocessing/.gitkeep
+src/tracking/.gitkeep
+src/alerts/.gitkeep
+src/distance/.gitkeep
