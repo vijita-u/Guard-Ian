@@ -5,3 +5,9 @@ albumentations
 torch
 torchvision
 pycocotools
+pandas
+Pillow
+requests
+scikit-learn
+matplotlib
+joblib
