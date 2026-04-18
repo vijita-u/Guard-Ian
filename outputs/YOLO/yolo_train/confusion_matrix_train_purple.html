@@ -1,0 +1,83 @@
+
+<style>
+  .wrap { padding: 1.5rem 0; display: flex; flex-direction: column; align-items: center; font-family: sans-serif; }
+  .mat-title { font-size: 13px; font-weight: 500; text-align: center; color: #3C3489; margin-bottom: 14px; letter-spacing: 0.02em; }
+  .mat-outer { display: flex; align-items: center; gap: 6px; }
+  .axis-label { font-size: 11px; color: #534AB7; font-weight: 500; letter-spacing: 0.06em; writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; }
+  .axis-label-x { font-size: 11px; color: #534AB7; font-weight: 500; letter-spacing: 0.06em; text-align: center; margin-top: 6px; }
+  .mat-col { display: flex; flex-direction: column; align-items: center; }
+  table.cm { border-collapse: collapse; }
+  table.cm td { width: 72px; height: 52px; text-align: center; font-size: 11px; font-weight: 500; border: 2px solid #fff; }
+  .tick-row { display: flex; }
+  .tick-cell { width: 72px; text-align: center; font-size: 10px; color: #534AB7; padding-top: 5px; }
+  .ytick-col { display: flex; flex-direction: column; }
+  .ytick-cell { height: 52px; display: flex; align-items: center; justify-content: flex-end; padding-right: 6px; font-size: 10px; color: #534AB7; white-space: nowrap; }
+</style>
+<div class="wrap">
+<script>
+  const purpleScale = [
+    '#EEEDFE','#CECBF6','#AFA9EC','#8F88E2','#7F77DD',
+    '#6B63D0','#534AB7','#3C3489','#26215C'
+  ];
+  function getColor(v, max) {
+    const t = v / max;
+    const idx = Math.round(t * (purpleScale.length - 1));
+    return purpleScale[idx];
+  }
+  function textColor(v, max) {
+    return (v / max) > 0.45 ? '#EEEDFE' : '#26215C';
+  }
+
+  const rowLabels = ['person','bicycle','car','bus','truck','background'];
+  const colLabels = ['person','bicycle','car','bus','truck','background'];
+
+  const data = [
+    [194124,    15,  43,     0,     2, 56071],
+    [    51,  5198,   6,     0,     1,  3810],
+    [    67,     2, 29911,  12,  1150, 11964],
+    [     8,     0,  51,  5524,   140,  1527],
+    [    10,     0, 1188,   84,  6647,  3882],
+    [ 68205,  1898, 12666, 449,  2033,     0]
+  ];
+
+  const maxVal = Math.max(...data.flat());
+
+  function buildMatrix() {
+    let html = '<table class="cm">';
+    for (let r = 0; r < data.length; r++) {
+      html += '<tr>';
+      for (let c = 0; c < data[r].length; c++) {
+        const v = data[r][c] || 0;
+        const bg = getColor(v, maxVal);
+        const tc = textColor(v, maxVal);
+        const display = v === 0 ? '' : v.toLocaleString();
+        html += `<td style="background:${bg};color:${tc}">${display}</td>`;
+      }
+      html += '</tr>';
+    }
+    html += '</table>';
+    return html;
+  }
+
+  let tickRow = '<div class="tick-row">';
+  for (let c = 0; c < colLabels.length; c++) tickRow += `<div class="tick-cell">${colLabels[c]}</div>`;
+  tickRow += '</div>';
+
+  let yticks = '<div class="ytick-col">';
+  for (let r = 0; r < rowLabels.length; r++) yticks += `<div class="ytick-cell">${rowLabels[r]}</div>`;
+  yticks += '</div>';
+
+  document.currentScript.insertAdjacentHTML('afterend', `
+    <div class="mat-title">Confusion matrix</div>
+    <div class="mat-outer">
+      <div class="axis-label">Predicted</div>
+      <div class="mat-col">${yticks}</div>
+      <div class="mat-col">
+        ${buildMatrix()}
+        ${tickRow}
+        <div class="axis-label-x">True</div>
+      </div>
+    </div>
+  `);
+</script>
+</div>
