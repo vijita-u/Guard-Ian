@@ -1,0 +1,26 @@
+Validation
+              precision    recall  f1-score   support
+
+name_bicycle       0.79      0.84      0.82       910
+    name_bus       0.79      0.78      0.79       911
+    name_car       0.67      0.55      0.60       910
+ name_person       0.76      0.82      0.79       910
+  name_truck       0.63      0.66      0.65       911
+
+    accuracy                           0.73      4552
+   macro avg       0.73      0.73      0.73      4552
+weighted avg       0.73      0.73      0.73      4552
+
+
+Test 
+              precision    recall  f1-score   support
+
+name_bicycle       0.22      0.81      0.35       316
+    name_bus       0.37      0.78      0.50       285
+    name_car       0.65      0.58      0.62      1932
+ name_person       0.98      0.84      0.90     11004
+  name_truck       0.27      0.65      0.38       415
+
+    accuracy                           0.80     13952
+   macro avg       0.50      0.73      0.55     13952
+weighted avg       0.88      0.80      0.83     13952
