@@ -2,7 +2,7 @@
 CNN that classifies images of 5 different classes utilizing 4 convolutional layers, 4 max pooling layers and 1 fully connected layer
 
 ## Overview
-1. Loads and reads the filtered COCO annotated files (TODO, Note it only reads the annotated file of uncropped images, have to copy the crop code to this notebook)
+1. Loads and reads the filtered COCO annotated files (TODO, Note it only reads the annoated file of post-cropped images)
 2. Extract features through training the CNN model
 3. Runs the model through the validation set at the same time during training
 4. Continually saves the model with the least loss
